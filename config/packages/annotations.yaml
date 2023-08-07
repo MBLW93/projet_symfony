@@ -1,0 +1,5 @@
+# config/packages/annotations.yaml
+
+framework:
+    annotations:
+        enabled: true

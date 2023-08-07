@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block container %}
+
+
+    <div>
+        <h1>Mon Panier ! <img src="{{asset('img/panier-2.png')}}" width="50px"> <span class="badge bg-success">{{products|length}}</span></h1>
+    </div>
+
+    {% if products|length != 0 %}
+        <div class="row">
+            {% for product in products %}
+                
+                    <div class="col-4 mt-3">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Prix : {{product.price}}€</h6>
+                                <p class="card-text">{{product.description}}</p>
+                                <a href="{{path('app_product_show', {id: product.id})}}"><button class="btn btn-primary">Afficher</button></a>
+                                <a href="{{path('app_product_show', {id: product.id})}}"><button class="btn btn-danger">Supprimer</button></a>
+                            </div>
+                        </div>
+                    </div>
+            {% endfor %}
+            <a href="{{path('payment', {amount: totalPrice})}}"><button class="mt-5 btn btn-success">Payer</button></a>
+        </div>
+    {% else %} 
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger">
+                    Votre panier est vide ! <a href="{{path('app_product')}}">Ajouter un produit</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

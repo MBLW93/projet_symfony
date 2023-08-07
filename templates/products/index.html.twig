@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block container %}
+
+    <h1>Mes produits ({{ products|length }}) | <a href="{{path('app_product_new')}}" class="btn btn-sm btn-primary">Créer un produit</a></h1>
+
+    {% for successMessage in app.flashes('success') %}
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-success">
+                    {{successMessage|raw}}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+    {% for product in products %}
+        
+           
+
+            <div class="card card-group col-4 mt-3">
+                <div class="card-header">
+                    {{product.name}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Prix : {{product.price}}€</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <a href="{{path('app_product_show', {id: product.id})}}" class="btn btn-primary">Afficher le produit</a>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Wassim</a>
+    <img src="{{asset('img/logo.png')}}" width="30px">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_main')}}">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_contact')}}">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{path('app_product')}}">Produits</a>
+        </li>
+        {% if app.user %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('app_logout')}}">Deconnexion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('app_panier')}}">
+                <button type="button" class="btn btn-primary position-relative">
+                  <img src="{{asset('img/panier-2.png')}}" width="20px">
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ app.session.get('cart_item_count', 0) }}
+                  <span class="visually-hidden">Produits</span>
+                  </span>
+                </button>
+              </a>
+            </li>
+            
+        {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('app_login')}}">Connexion</a>
+            </li>
+        {% endif %}
+        
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
